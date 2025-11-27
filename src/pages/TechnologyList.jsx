@@ -1,20 +1,41 @@
-// pages/TechnologyList.js
+// pages/TechnologyList.jsx
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import TechnologyCard from '../components/TechnologyCard'; // Импортируем компонент карточки
+import TechnologyCard from '../components/TechnologyCard';
 
 function TechnologyList() {
     const [technologies, setTechnologies] = useState([]);
-    const [loading, setLoading] = useState(true); // Состояние загрузки
+    const [loading, setLoading] = useState(true);
 
-    // Загружаем технологии из localStorage при монтировании компонента
     useEffect(() => {
         const saved = localStorage.getItem('technologies');
         if (saved) {
-            setTechnologies(JSON.parse(saved));
+            try {
+                const parsed = JSON.parse(saved);
+                setTechnologies(parsed);
+            } catch (e) {
+                console.error('Ошибка при загрузке технологий из localStorage:', e);
+                setTechnologies([]);
+            }
         }
-        setLoading(false); // Убираем индикатор загрузки
+        setLoading(false);
     }, []);
+
+    const handleNotesChange = (id, newNotes) => {
+        const saved = localStorage.getItem('technologies');
+        if (saved) {
+            try {
+                const technologies = JSON.parse(saved);
+                const updated = technologies.map(t =>
+                    t.id === id ? { ...t, notes: newNotes } : t
+                );
+                localStorage.setItem('technologies', JSON.stringify(updated));
+                setTechnologies(updated);
+            } catch (e) {
+                console.error('Ошибка при обновлении заметок:', e);
+            }
+        }
+    };
 
     if (loading) {
         return (
@@ -34,7 +55,7 @@ function TechnologyList() {
             </div>
 
             {technologies.length > 0 ? (
-                <div className="technologies-list"> {/* Используем класс для списка, как в App.jsx */}
+                <div className="technologies-list">
                     {technologies.map(tech => (
                         <TechnologyCard
                             key={tech.id}
@@ -42,22 +63,13 @@ function TechnologyList() {
                             title={tech.title}
                             description={tech.description}
                             status={tech.status}
-                            notes={tech.notes}
-                            // Для списка не нужен обработчик изменения статуса, он будет на детальной странице
-                            onStatusChange={() => { }} // Заглушка, если компонент карточки ожидает проп
-                            onNotesChange={(id, newNotes) => {
-                                // Обновляем заметки в localStorage
-                                const saved = localStorage.getItem('technologies');
-                                if (saved) {
-                                    const technologies = JSON.parse(saved);
-                                    const updated = technologies.map(t =>
-                                        t.id === id ? { ...t, notes: newNotes } : t
-                                    );
-                                    localStorage.setItem('technologies', JSON.stringify(updated));
-                                    // Обновляем локальное состояние
-                                    setTechnologies(updated);
-                                }
-                            }}
+                            category={tech.category || 'frontend'}
+                            startDate={tech.startDate || ''}
+                            deadline={tech.deadline || ''}
+                            resources={tech.resources || ''}
+                            notes={tech.notes || ''}
+                            onStatusChange={() => {}} // Заглушка — управление статусом на детальной странице
+                            onNotesChange={handleNotesChange}
                         />
                     ))}
                 </div>

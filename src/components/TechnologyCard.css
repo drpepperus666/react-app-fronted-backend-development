@@ -1,10 +1,10 @@
+/* components/TechnologyCard.css */
 .technology-card {
     border: 2px solid #e6d5eb;
     border-radius: 12px;
     padding: 20px;
     margin: 16px 0;
     background-color: rgba(255, 255, 255, 0.85);
-    /* Основной фон карточки */
     box-shadow: 0 4px 8px rgba(190, 160, 220, 0.2);
     transition:
         transform 0.3s ease,
@@ -41,6 +41,75 @@
     font-size: 0.95em;
 }
 
+/* --- Новые блоки --- */
+
+.card-category {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    font-size: 0.9em;
+    color: #6a4c93;
+    font-weight: 500;
+}
+
+.category-label {
+    font-weight: 600;
+    color: #8e7ab5;
+}
+
+.category-value {
+    background-color: rgba(216, 189, 224, 0.3);
+    padding: 2px 8px;
+    border-radius: 6px;
+    color: #6a4c93;
+}
+
+.card-dates {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 0.875em;
+    color: #8e7ab5;
+}
+
+.date-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.date-label {
+    font-weight: 600;
+    color: #a59bc8;
+    font-size: 0.85em;
+}
+
+.date-value {
+    font-weight: 500;
+    color: #6a4c93;
+}
+
+.card-resources {
+    margin-bottom: 14px;
+    font-size: 0.9em;
+    color: #8e7ab5;
+    line-height: 1.5;
+}
+
+.resources-label {
+    font-weight: 600;
+    color: #8e7ab5;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.resources-value {
+    margin: 0;
+    white-space: pre-wrap;
+    color: #6a4c93;
+}
+
+/* --- Статус --- */
 .card-status {
     display: flex;
     align-items: center;
@@ -50,6 +119,7 @@
     padding: 6px 12px;
     border-radius: 20px;
     width: fit-content;
+    margin-bottom: 14px;
 }
 
 .status-icon {
@@ -68,69 +138,31 @@
     letter-spacing: 0.5px;
 }
 
-/* --- Новые стили для области заметок --- */
-/*
-.notes-wrapper {
-    background: linear-gradient(to bottom, rgba(199, 184, 221, 0.3), rgba(133, 128, 202, 1.0)), transparent;
-    padding: 15px; 
-    border-radius: 8px;
-    margin-top: 15px;
-    border-top: 1px solid #d8bde0;
-}
-    */
-
+/* --- Область заметок --- */
 .notes-wrapper {
     padding: 15px;
     border-radius: 8px;
-    margin-top: 15px;
-    /* border-top: 1px solid #d8bde0; */
-    /* Можно оставить, если нужно */
+    margin-top: 10px;
     position: relative;
-    /* Обязательно для ::before */
-    z-index: 1;
-    /* Убедимся, что содержимое поверх псевдоэлемента */
-}
-
-/* Псевдоэлемент для фона */
-.notes-wrapper {
-    /* Путь к вашей картинке */
-    background-image: url('../assets/forest.jpg');
-    /* Укажите правильный путь */
-    background-size: cover;
-    /* Картинка растягивается, заполняя контейнер */
-    background-position: center;
-    /* Центрируем картинку */
-    background-repeat: no-repeat;
-    /* Запрещаем повторение */
-
-    /* Накладываем полупрозрачный черный слой сверху для затемнения */
     background: linear-gradient(rgba(248, 207, 247, 0.5), rgba(132, 125, 202, 0.5)), url('../assets/forest.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-    /* border-top: 1px solid #d8bde0; */
-    /* Можно оставить, если нужно */
-    position: relative;
-    /* Важно для правильного наложения */
 }
 
-/* --- Стили для разных статусов остаются без изменений --- */
+/* --- Стили статусов --- */
 .status-completed {
     border-color: #d8bde0;
     background-color: rgba(230, 213, 235, 0.7);
 }
 
-.status-completed .status-text {
+.status-completed .status-text,
+.status-completed .card-status {
     color: #b37bb4;
 }
 
 .status-completed .card-status {
     background-color: rgba(240, 220, 245, 0.6);
-    color: #b37bb4;
 }
 
 .status-in-progress {
@@ -138,13 +170,13 @@
     background-color: rgba(245, 230, 245, 0.7);
 }
 
-.status-in-progress .status-text {
+.status-in-progress .status-text,
+.status-in-progress .card-status {
     color: #e08cb3;
 }
 
 .status-in-progress .card-status {
     background-color: rgba(255, 220, 240, 0.6);
-    color: #e08cb3;
 }
 
 .status-not-started {
@@ -152,11 +184,11 @@
     background-color: rgba(250, 240, 250, 0.7);
 }
 
-.status-not-started .status-text {
+.status-not-started .status-text,
+.status-not-started .card-status {
     color: #cc99cc;
 }
 
 .status-not-started .card-status {
     background-color: rgba(255, 235, 255, 0.6);
-    color: #cc99cc;
 }

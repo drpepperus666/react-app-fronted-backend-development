@@ -1,6 +1,6 @@
 // components/Navigation.js
 import { Link, useLocation } from 'react-router-dom';
-import './Navigation.css'; // Импортируем файл стилей для навигации
+import './Navigation.css';
 
 function Navigation() {
     const location = useLocation();
@@ -9,7 +9,7 @@ function Navigation() {
         <nav className="main-navigation">
             <div className="nav-brand">
                 <Link to="/" className="nav-brand-link">
-                    <h2>Трекер технологий</h2>
+                    <h2><b>Трекер технологий</b></h2>
                 </Link>
             </div>
 
@@ -28,6 +28,14 @@ function Navigation() {
                         className={`nav-link ${location.pathname === '/technologies' ? 'active' : ''}`}
                     >
                         Все
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/bulk-edit"
+                        className={`nav-link ${location.pathname === '/bulk-edit' ? 'active' : ''}`}
+                    >
+                        Массовое редактирование
                     </Link>
                 </li>
                 <li>

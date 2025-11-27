@@ -57,6 +57,13 @@
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Состояние ошибки */
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"] {
+    border-color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.05);
+}
+
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
@@ -70,6 +77,15 @@
     min-height: 100px;
 }
 
+/* Сообщения об ошибках */
+.error-message {
+    color: #e53e3e;
+    font-size: 0.875em;
+    margin-top: 4px;
+    padding-left: 2px;
+    font-weight: 500;
+}
+
 .form-actions {
     display: flex;
     gap: 15px;
@@ -77,7 +93,7 @@
     margin-top: 10px;
 }
 
-/* Стили для кнопок (аналогичные кнопкам в QuickActions.css) */
+/* Стили для кнопок */
 .btn {
     padding: 10px 16px;
     border: none;
@@ -93,22 +109,22 @@
 }
 
 .btn-primary {
-    background-color: #a59bc8; /* Светло-лиловый */
+    background-color: #a59bc8;
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #6a4c93; /* Глубокий лиловый */
+    background-color: #6a4c93;
     transform: translateY(-1px);
 }
 
 .btn-secondary {
-    background-color: #8e7ab5; /* Приглушенный фиолетовый */
+    background-color: #8e7ab5;
     color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #6a4c93; /* Глубокий лиловый */
+    background-color: #6a4c93;
     transform: translateY(-1px);
 }
 

@@ -53,6 +53,7 @@
     font-weight: 600;
 }
 
+
 .setting-item {
     margin-bottom: 15px;
 }
@@ -152,6 +153,14 @@
 .app-info p {
     margin: 5px 0;
     font-size: 0.95em;
+}
+
+/* Кнопка импорта — выравнивание по центру и ширина */
+.import-btn {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
 }
 
 /* Адаптивность */
